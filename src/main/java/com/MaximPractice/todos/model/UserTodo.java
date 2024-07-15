@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="Users")
-public class User {
+public class UserTodo {
     @Id
     @GeneratedValue
     private Long id;

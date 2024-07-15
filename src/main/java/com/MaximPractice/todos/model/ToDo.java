@@ -1,10 +1,6 @@
 package com.MaximPractice.todos.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Builder;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -19,4 +15,7 @@ public class ToDo {
     private String text;
     private boolean isCompleted;
     private LocalDate deadline;
+    @ManyToOne
+    @JoinColumn(name="userid", nullable=false)
+    private UserTodo user;
 }

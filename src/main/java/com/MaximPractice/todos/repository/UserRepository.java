@@ -1,8 +1,8 @@
 package com.MaximPractice.todos.repository;
 
-import com.MaximPractice.todos.model.User;
+import com.MaximPractice.todos.model.UserTodo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    public User findByUsername(String username);
+public interface UserRepository extends JpaRepository<UserTodo, Long> {
+    public UserTodo findByUsername(String username);
 }

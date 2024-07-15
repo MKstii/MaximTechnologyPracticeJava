@@ -1,5 +1,6 @@
 package com.MaximPractice.todos.service;
 
+import com.MaximPractice.todos.config.CustomUserDetailsService;
 import com.MaximPractice.todos.model.DTO.UserLoginDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,18 +20,19 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class AuthService {
     private final AuthenticationManager authenticationManager;
-    private final UserDetailsService userDetailsService;
+    private final CustomUserDetailsService userDetailsService;
 
     public void Register(String username, String password, String passwordRepeat) throws Exception {
         if (!password.equals(passwordRepeat)) {
             throw new Exception("Пароли не совпадают");
         }
         //TODO Переделать на работу с бд
-        UserDetails newUser = User.withUsername(username)
-                .password("{noop}" + password)
-                .roles("USER")
-                .build();
-        ((InMemoryUserDetailsManager) userDetailsService).createUser(newUser);
+        userDetailsService.CreateUser(username, password);
+//        UserDetails newUser = User.withUsername(username)
+//                .password("{noop}" + password)
+//                .roles("USER")
+//                .build();
+//        ((InMemoryUserDetailsManager) userDetailsService).createUser(newUser);
     }
 
     public void Login(UserLoginDTO userLogin, HttpServletRequest request) throws Exception {
